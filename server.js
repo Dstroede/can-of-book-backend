@@ -32,6 +32,27 @@ app.get('/', (req, res, next) => res.status(200).send('Default Route Working'));
 
 app.get('/books', getBooks);
 
+app.delete('/books/:id', async (req, res, next) => {
+    try{
+        const bookId = req.params.id;
+        console.log('Deleteing book with Id: ', bookId);
+        if(!mongoose.Types.ObjectId.isValid(bookId)) {
+            return res.status(400).json({error: 'Invalid Book ID'});
+        }
+
+        const deletedBook =await bookModel.findByIdAndDelete(bookId);
+
+        if (!deletedBook) {
+            return res.status(404).json({ error: 'Books Not Found'});
+        }
+
+        res.json({message: 'Book Deleted Successfully' , deletedBook});
+        } catch (error) {
+            console.error('Error in delete route:', error);
+            res.status(500).json({ error: 'Internal Server Error', details: error.message});
+        }
+    });
+
 app.post('/books', async (req, res, next) => {
     try {
         const { title, description, status } = req.body;

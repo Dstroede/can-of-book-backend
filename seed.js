@@ -29,7 +29,6 @@ async function seed() {
     } catch (e){
         console.log(e.message)
     }
-    mongoose.disconnect();
 }
 
-seed();
+module.exports = seed;

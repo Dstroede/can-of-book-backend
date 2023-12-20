@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const Book = require('./books');
 
-mongoose.connect(process.env.MONGODB_CONN);
+mongoose.connect(`mongodb+srv://drewstroede:${process.env.MONGODBPASS}@cluster0.wvycfuz.mongodb.net/?retryWrites=true&w=majority`);
 
 async function seed() {
     try{

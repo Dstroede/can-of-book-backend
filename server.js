@@ -16,7 +16,7 @@ app.use(authorize);
 
 const PORT = process.env.PORT
 
-mongoose.connect(`${process.env.MONGODB_CONN}`);
+mongoose.connect(`mongodb+srv://drewstroede:${MONGODBPASS}@cluster0.wvycfuz.mongodb.net/?retryWrites=true&w=majority`);
 
 
 const db = mongoose.connection;

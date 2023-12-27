@@ -18,7 +18,6 @@ async function verifyUser(request, response, next) {
       }
 
   try {
-    console.log(request.headers.authorization)
     const token = request.headers.authorization.split(' ')[1];
     console.log(token)
     jwt.verify(token, getKey, {}, valid);
